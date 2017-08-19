@@ -22,8 +22,7 @@ public class Main {
         for (int x = 1; x<11; x++) {
             Car car = new Car();
             System.out.println(car.name());
-            System.out.println(car.setSpeedLimit());
-            System.out.println(car.moveForAnHour(50) + " kms travelled.");
+            System.out.println(car.moveForAnHour(isRaining()));
         }
     }
 
