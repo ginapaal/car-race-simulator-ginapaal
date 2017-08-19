@@ -31,7 +31,7 @@ public class Car {
         return distanceTravelled;
     }
 
-    static void moveForAnHour() {
-        setSpeedLimit();
+    static int moveForAnHour(boolean rain, int hours) {
+        return setSpeedLimit() * hours;
     }
 }

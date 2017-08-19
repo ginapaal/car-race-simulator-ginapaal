@@ -23,6 +23,7 @@ public class Main {
             Car car = new Car();
             System.out.println(car.name());
             System.out.println(car.setSpeedLimit());
+            System.out.println(car.moveForAnHour(50) + " kms travelled.");
         }
     }
 
@@ -36,7 +37,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        isRaining();
         createVehicles();
     }
 }
