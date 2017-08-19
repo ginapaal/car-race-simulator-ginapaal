@@ -17,12 +17,11 @@ public class Main {
         }
     }
 
-    int createVehicles() {
+    static int createVehicles() {
         // creates 10 cars, 10 trucks and 10 motorcycles
         Car car = new Car();
-
-
-        return 5;
+        System.out.println(car.name());
+        return 10;
     }
 
     void simulateRace() {
@@ -36,6 +35,7 @@ public class Main {
 
     public static void main(String[] args) {
         isRaining();
-        Car.name();
+        createVehicles();
+        Car.setSpeedLimit();
     }
 }
