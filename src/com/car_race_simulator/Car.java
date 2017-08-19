@@ -15,21 +15,23 @@ public class Car {
         int getRandomLastName = randomize.nextInt(carNames.size());
         String getSurName = carNames.get(getRandomSurName)+" ";
         String getLastName = carNames.get(getRandomLastName);
-        String carFullName = getSurName + getLastName;
-        return carFullName;
+        return getSurName + getLastName;
     }
 
     static int setSpeedLimit() {
-        int carSpeed;
+        int normalSpeed;
         int limitedSpeed = randomize.nextInt(100);
         if (limitedSpeed <= 30) {
-            System.out.println("I'm going slowly");
-            carSpeed = 70;
+            normalSpeed = 70;
         } else {
-            int averageSpeed = randomize.nextInt((110 - 80) + 1) + 80;
-            carSpeed = averageSpeed;
+            normalSpeed = randomize.nextInt((110 - 80) + 1) + 80;
         }
-        System.out.println(carSpeed);
-        return carSpeed;
+        int distanceTravelled = 0;
+        distanceTravelled += normalSpeed;
+        return distanceTravelled;
+    }
+
+    static void moveForAnHour() {
+        setSpeedLimit();
     }
 }
