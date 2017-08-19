@@ -21,10 +21,16 @@ public class Main {
     static TreeMap createVehicles() {
         // creates 10 cars, 10 trucks and 10 motorcycles
         TreeMap<String, Integer> carMap = new TreeMap<>();
+        TreeMap<String, Integer> motor = new TreeMap<>();
         for (int x = 1; x<11; x++) {
             Car car = new Car();
             carMap.put(car.name(), car.setSpeedLimit());
+            Motorcycle motorcycle = new Motorcycle();
+            motor.put(motorcycle.name(x), motorcycle.speed());
         }
+        System.out.println(motor);
+
+
         return carMap;
     }
 
