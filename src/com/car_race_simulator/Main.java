@@ -1,6 +1,9 @@
 package com.car_race_simulator;
 
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Main {
 
@@ -8,25 +11,27 @@ public class Main {
         //30% chance of raining
         Random random = new Random();
         int rainChance = random.nextInt(100);
-        System.out.println(rainChance);
         if (rainChance <= 30) {
-            System.out.println("It's raining");
             return true;
         } else {
             return false;
         }
     }
 
-    int createVehicles() {
+    static TreeMap createVehicles() {
         // creates 10 cars, 10 trucks and 10 motorcycles
-        Car car = new Car();
-
-
-        return 5;
+        TreeMap<String, Integer> carMap = new TreeMap<>();
+        for (int x = 1; x<11; x++) {
+            Car car = new Car();
+            carMap.put(car.name(), car.moveForAnHour(isRaining()));
+        }
+        return carMap;
     }
 
-    void simulateRace() {
+    public static void simulateRace() {
         //calling moveForAnHour() for every vehicle 50 times
+        int hours = 50;
+        TreeMap cars = createVehicles();
 
     }
 
@@ -35,7 +40,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        isRaining();
-        Car.name();
+        simulateRace();
     }
 }
