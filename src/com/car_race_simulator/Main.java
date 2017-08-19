@@ -30,8 +30,9 @@ public class Main {
 
     public static void simulateRace() {
         //calling moveForAnHour() for every vehicle 50 times
-        Object cars = createVehicles();
-        System.out.println(cars);
+        int hours = 50;
+        TreeMap cars = createVehicles();
+
     }
 
     void printRaceResults() {
