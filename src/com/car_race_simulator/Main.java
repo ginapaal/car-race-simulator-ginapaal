@@ -23,7 +23,7 @@ public class Main {
         TreeMap<String, Integer> carMap = new TreeMap<>();
         for (int x = 1; x<11; x++) {
             Car car = new Car();
-            carMap.put(car.name(), car.moveForAnHour(isRaining()));
+            carMap.put(car.name(), car.setSpeedLimit());
         }
         return carMap;
     }
@@ -32,7 +32,9 @@ public class Main {
         //calling moveForAnHour() for every vehicle 50 times
         int hours = 50;
         TreeMap cars = createVehicles();
-
+        System.out.println(cars);
+        TreeMap distance = Car.moveForAnHour(isRaining(), cars, 50);
+        System.out.println(distance);
     }
 
     void printRaceResults() {

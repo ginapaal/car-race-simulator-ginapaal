@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.TreeMap;
+import java.util.Map;
 
 public class Car {
     static Random randomize = new Random();
@@ -26,12 +28,19 @@ public class Car {
         } else {
             normalSpeed = randomize.nextInt((110 - 80) + 1) + 80;
         }
-        int distanceTravelled = 0;
-        distanceTravelled += normalSpeed;
-        return distanceTravelled;
+        return normalSpeed;
     }
 
-    static int moveForAnHour(boolean rain) {
-        return setSpeedLimit();
+    static TreeMap<String, Integer> moveForAnHour(boolean rain, TreeMap<String, Integer> vehicles, int hours) {
+        TreeMap<String,Integer> distancePerCar = new TreeMap<>();
+        for(Map.Entry<String,Integer> entry : vehicles.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            for (int i = 1; i < hours+1; i++) {
+                int distance = value*i;
+                distancePerCar.put(key, distance);
+            }
+        }
+        return distancePerCar;
     }
 }
