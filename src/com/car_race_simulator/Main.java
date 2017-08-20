@@ -1,9 +1,6 @@
 package com.car_race_simulator;
 
-import java.util.Random;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Main {
 
@@ -20,27 +17,23 @@ public class Main {
 
     static TreeMap createVehicles() {
         // creates 10 cars, 10 trucks and 10 motorcycles
-        TreeMap<String, Integer> carMap = new TreeMap<>();
-        TreeMap<String, Integer> motor = new TreeMap<>();
+        TreeMap<String, Integer> vehicles = new TreeMap<>(Comparator.reverseOrder());
+
         for (int x = 1; x<11; x++) {
             Car car = new Car();
-            carMap.put(car.name(), car.setSpeedLimit());
+            vehicles.put(car.name(), car.setSpeedLimit());
             Motorcycle motorcycle = new Motorcycle();
-            motor.put(motorcycle.name(x), motorcycle.speed());
+            vehicles.put(motorcycle.name(x), motorcycle.speed());
         }
-        System.out.println(motor);
-
-
-        return carMap;
+        return vehicles;
     }
 
     public static void simulateRace() {
         //calling moveForAnHour() for every vehicle 50 times
-        int hours = 50;
-        TreeMap cars = createVehicles();
-        System.out.println(cars);
-        TreeMap distance = Car.moveForAnHour(isRaining(), cars, 50);
-        System.out.println(distance);
+        for (int i = 1; i < 50; i++) {
+            Car.moveForAnHour(isRaining(), createVehicles());
+            System.out.println(createVehicles());
+        }
     }
 
     void printRaceResults() {
@@ -49,5 +42,6 @@ public class Main {
 
     public static void main(String[] args) {
         simulateRace();
+
     }
 }

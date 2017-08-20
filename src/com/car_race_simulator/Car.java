@@ -35,17 +35,14 @@ public class Car {
         return normalSpeed;
     }
 
-    static TreeMap<String, Integer> moveForAnHour(boolean rain, TreeMap<String, Integer> vehicles, int hours) {
+    static TreeMap moveForAnHour(boolean rain, TreeMap<String, Integer> vehicles) {
         //count distance / hour
         TreeMap<String, Integer> distancePerCar = new TreeMap<>();
         for (Map.Entry<String, Integer> entry : vehicles.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
-            for (int i = 1; i < hours + 1; i++) {
-                int distance = value * i;
-                distancePerCar.put(key, distance);
+            distancePerCar.put(key, value);
             }
-        }
         return distancePerCar;
     }
 }
