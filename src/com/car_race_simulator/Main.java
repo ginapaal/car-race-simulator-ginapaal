@@ -4,44 +4,34 @@ import java.util.*;
 
 public class Main {
 
-    static Boolean isRaining() {
-        //30% chance of raining
-        Random random = new Random();
-        int rainChance = random.nextInt(100);
-        if (rainChance <= 30) {
+    static Random randomize = new Random();
+    static boolean isRaining() {
+        int possibility = randomize.nextInt(100);
+
+        if (possibility <= 30) {
+            System.out.println("It's raining");
             return true;
         } else {
             return false;
         }
     }
 
-    static TreeMap createVehicles() {
-        // creates 10 cars, 10 trucks and 10 motorcycles
-        TreeMap<String, Integer> vehicles = new TreeMap<>(Comparator.reverseOrder());
-
-        for (int x = 1; x<11; x++) {
-            Car car = new Car();
-            vehicles.put(car.name(), car.setSpeedLimit());
-            Motorcycle motorcycle = new Motorcycle();
-            vehicles.put(motorcycle.name(x), motorcycle.speed());
+    static void createVehicles() {
+        List vehicles = new ArrayList();
+        for (int i = 1; i < 11; i++) {
+            Car cars = new Car();
+            vehicles.add(cars.carName());
+            Motorcycle motors = new Motorcycle();
+            vehicles.add(motors.motorNames(i));
+            Truck trucks = new Truck();
+            vehicles.add(trucks.truckNames());
         }
-        return vehicles;
-    }
-
-    public static void simulateRace() {
-        //calling moveForAnHour() for every vehicle 50 times
-        for (int i = 1; i < 50; i++) {
-            Car.moveForAnHour(isRaining(), createVehicles());
-            System.out.println(createVehicles());
-        }
-    }
-
-    void printRaceResults() {
-        //print out the results of the race
+        Collections.sort(vehicles);
+        System.out.println(vehicles);
     }
 
     public static void main(String[] args) {
-        simulateRace();
-
+        isRaining();
+        createVehicles();
     }
 }
