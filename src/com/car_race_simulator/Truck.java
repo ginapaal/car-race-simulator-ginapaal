@@ -8,4 +8,16 @@ public class Truck {
         return name;
     }
 
+    static int setSpeed() {
+        int normalSpeed;
+        int breakDown = Main.randomize.nextInt(100);
+        if (breakDown <= 5) {
+            System.out.println("I'm broke");
+            normalSpeed = 0;
+        } else {
+            normalSpeed  = 100;
+        }
+
+        return normalSpeed;
+    }
 }

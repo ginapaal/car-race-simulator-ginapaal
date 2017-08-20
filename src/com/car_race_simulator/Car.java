@@ -20,4 +20,15 @@ public class Car {
         return surName + lastName;
     }
 
+    static int setSpeed() {
+        int normalSpeed;
+        int limit = Main.randomize.nextInt(100);
+         if (limit <= 30) {
+             normalSpeed = 70;
+         } else {
+             normalSpeed = Main.randomize.nextInt((110 - 80) + 1) + 80;
+         }
+
+         return normalSpeed;
+    }
 }
