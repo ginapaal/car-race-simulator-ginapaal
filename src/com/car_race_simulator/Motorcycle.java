@@ -1,20 +1,30 @@
 package com.car_race_simulator;
 
-public class Motorcycle {
+public class Motorcycle extends Vehicles {
 
-    static String motorNames(int number) {
-        String motorName = "Motorcycle " + number;
+    static int nameNumber;
 
-        return motorName;
+
+    public Motorcycle() {
+        type = "motorcycle";
+        name = "Motorcycle" + ++nameNumber;
     }
 
-    static int setSpeed(boolean raining) {
-        int normalSpeed = 100;
+    public static String motorNames(int number) {
+        String name = "Motorcycle " + number;
 
+        return name;
+    }
+
+    @Override
+    public void moveForAnHour(boolean raining) {
         if (raining) {
-            normalSpeed -= Main.randomize.nextInt((50 - 5) + 1) + 5;
+            normalSpeed -= (5 + (Main.randomize.nextInt(45)));
+        } else {
+            normalSpeed = 100;
         }
-
-        return normalSpeed;
+        distanceTraveled += normalSpeed;
     }
+
+
 }

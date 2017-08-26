@@ -5,38 +5,68 @@ import java.util.*;
 public class Main {
 
     static Random randomize = new Random();
+
     static boolean isRaining() {
         int possibility = randomize.nextInt(100);
 
         if (possibility <= 30) {
-            System.out.println("It's raining");
             return true;
         } else {
             return false;
         }
     }
 
-    static List createVehicles() {
-        List vehicles = new ArrayList();
-        for (int i = 1; i < 11; i++) {
-            Car cars = new Car();
-            vehicles.add(cars.carName());
-            System.out.println(i+ " "+cars.carName()+" "+ cars.setSpeed());
-            Motorcycle motors = new Motorcycle();
-            vehicles.add(motors.motorNames(i));
-            System.out.println(i+ " "+motors.motorNames(i) + " " + motors.setSpeed(isRaining()));
-            Truck trucks = new Truck();
-            vehicles.add(trucks.truckNames());
-            System.out.println(i+ " "+trucks.truckNames()+" "+trucks.setSpeed());
-        }
-        Collections.sort(vehicles);
-        System.out.println(vehicles);
 
+    static Vehicles[] createVehicles() {
+
+        Vehicles[] vehicles = new Vehicles[30];
+
+        for (int i = 0; i < 10; i++) {
+            Vehicles car = new Car();
+            vehicles[i] = car;
+        }
+
+        for (int i = 10; i < 20; i++) {
+            Vehicles motor = new Motorcycle();
+            vehicles[i] = motor;
+        }
+
+        for (int i = 20; i < 30; i++) {
+            Vehicles truck = new Truck();
+            vehicles[i] = truck;
+        }
         return vehicles;
     }
 
-    public static void main(String[] args) {
-        isRaining();
-        createVehicles();
+    private static Vehicles[] simulateRace(Vehicles[] vehicles) {
+        for (int hours = 1; hours <= 50; hours++) {
+            for (int i = 0; i < 30; i++) {
+                vehicles[i].moveForAnHour(isRaining());
+            }
+        }
+        return vehicles;
     }
+
+    private static void printRaceResults(Vehicles[] vehicles) {
+        int winner = 0;
+        int temp = 0;
+        for (int i = 0; i < 30; i++) {
+            System.out.println(vehicles[i].name + ": " + vehicles[i].getDistanceTraveled());
+            if (temp < vehicles[i].getDistanceTraveled()) {
+                temp = vehicles[i].getDistanceTraveled();
+                winner = i;
+            }
+        }
+        System.out.println("\nThe winner is a " + vehicles[winner].getType() + "!" + "\n"
+                + "Name: " + vehicles[winner].name + "\n" + "Distance traveled: "
+                + vehicles[winner].getDistanceTraveled());
+    }
+
+    public static void main(String[] args) {
+
+        Vehicles[] vehicles = createVehicles();
+        Vehicles[] race = simulateRace(vehicles);
+        printRaceResults(race);
+    }
+
 }

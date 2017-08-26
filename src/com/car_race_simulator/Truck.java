@@ -1,23 +1,33 @@
 package com.car_race_simulator;
 
-public class Truck {
+import java.util.Random;
 
-    static String truckNames() {
+public class Truck extends Vehicles {
+
+    public Truck() {
+        type = "truck";
+        name = truckNames();
+    }
+
+    public static String truckNames() {
         int truckName = Main.randomize.nextInt(1000);
         String name = Integer.toString(truckName);
         return name;
     }
 
-    static int setSpeed() {
-        int normalSpeed;
-        int breakDown = Main.randomize.nextInt(100);
-        if (breakDown <= 5) {
-            System.out.println("I'm broke");
-            normalSpeed = 0;
-        } else {
-            normalSpeed  = 100;
-        }
+    int breakDownTurnsLeft;
 
-        return normalSpeed;
+    @Override
+    public void moveForAnHour(boolean rain) {
+        if (breakDownTurnsLeft != 0) {
+            normalSpeed = 0;
+            breakDownTurnsLeft--;
+        } else if (breakDownTurnsLeft == 0) {
+            normalSpeed = 100;
+            int breakdown = Main.randomize.nextInt(101);
+            if (breakdown <= 5) breakDownTurnsLeft = 2;
+        }
+        distanceTraveled += normalSpeed;
     }
+
 }
